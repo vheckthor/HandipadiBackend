@@ -1,6 +1,6 @@
 namespace HandiPapi
 {
-    public class WeatherForecast
+    public class HandiPapi
     {
         public DateTime Date { get; set; }
 
