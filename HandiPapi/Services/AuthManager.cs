@@ -12,7 +12,7 @@ namespace HandiPapi.Services
     {
         private readonly UserManager<ApiUser> userManager;
         private readonly IConfiguration configuration;
-        private ApiUser user;
+        private ApiUser? user;
 
         public AuthManager(UserManager<ApiUser> userManager, IConfiguration configuration)
         {
