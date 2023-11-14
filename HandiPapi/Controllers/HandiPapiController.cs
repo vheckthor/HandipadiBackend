@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HandiPapi.Controllers
 {
-    [ApiController]
+    // [ApiController]
     [Route("[controller]")]
     public class HandiPapiController : ControllerBase
     {

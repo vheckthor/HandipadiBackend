@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HandiPapi.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    // [ApiController]
     public class RegistrationController : ControllerBase
     {
         private readonly UserManager<ApiUser> userManager;
