@@ -11,17 +11,17 @@ namespace HandiPapi.Controllers
     // [ApiController]
     public class RegistrationController : ControllerBase
     {
-        private readonly UserManager<ApiUser> userManager;
-        private readonly ILogger<RegistrationController> logger;
-        private readonly IMapper mapper;
-        private readonly IAuthManager authManager;
+        private readonly UserManager<ApiUser> _userManager;
+        private readonly ILogger<RegistrationController> _logger;
+        private readonly IMapper _mapper;
+        private readonly IAuthManager _authManager;
 
         public RegistrationController(UserManager<ApiUser> userManager, ILogger<RegistrationController> logger, IMapper mapper, IAuthManager authManager)
         {
-            this.userManager = userManager;
-            this.logger = logger;
-            this.mapper = mapper;
-            this.authManager = authManager;
+            _userManager = userManager;
+            _logger = logger;
+            _mapper = mapper;
+            _authManager = authManager;
         }
 
         [HttpPost]
@@ -29,16 +29,16 @@ namespace HandiPapi.Controllers
 
         public async Task<IActionResult> Register([FromBody] UserDto userDto)
         {
-            logger.LogInformation($"Registration attempt for {userDto.Email}");
+            _logger.LogInformation($"Registration attempt for {userDto.Email}");
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             try
             {
-                var user = mapper.Map<ApiUser>(userDto);
+                var user = _mapper.Map<ApiUser>(userDto);
                 user.UserName = userDto.Email;
-                var result = await userManager.CreateAsync(user);
+                var result = await _userManager.CreateAsync(user);
 
                 if (!result.Succeeded)
                 {
@@ -52,7 +52,7 @@ namespace HandiPapi.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, $"Something Went Wrong in the {nameof(Register)}");
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(Register)}");
                 return Problem($"Something Went wrong in the{nameof(Register)}", statusCode: 500);
             }
         }
